@@ -40,7 +40,7 @@ Route::get('/students/{id}', [StudentController::class, 'show'])->name('students
 
 
 Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
-Route::post('/students/{id}/update', [StudentController::class, 'update'])->name('students.update');
+Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
 
 
 
@@ -56,3 +56,5 @@ Route::put('/grades/{grade}', [SchoolGradeController::class, 'update'])->name('g
 
 Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
 
+
+Route::get('/students/{id}/grades', [StudentController::class, 'getGrades'])->name('students.grades');
