@@ -7,11 +7,12 @@
 <body>
     <h1>成績編集</h1>
 
+    <!-- 成績編集フォーム -->
     <form method="POST" action="{{ route('grades.update', $grade->id) }}">
-
         @csrf
         @method('PUT')
 
+        <!-- 学年選択 -->
         <label>学年：</label>
         <select name="grade">
             @for ($i = 1; $i <= 6; $i++)
@@ -22,6 +23,7 @@
         </select>
         <br>
 
+        <!-- 学期選択 -->
         <label>学期：</label>
         <select name="term">
             @for ($i = 1; $i <= 3; $i++)
@@ -32,6 +34,7 @@
         </select>
         <br>
 
+        <!-- 各教科の成績 -->
         @foreach ([
             'japanese' => '国語',
             'math' => '数学',
@@ -54,10 +57,12 @@
             <br>
         @endforeach
 
+        <!-- 編集ボタン -->
         <button type="submit">編集</button>
     </form>
 
     <br>
+    <!-- 戻るリンク -->
     <a href="{{ route('students.show', $grade->student_id) }}">← 戻る</a>
 </body>
 </html>

@@ -7,16 +7,20 @@
 <body>
     <h1>学生一覧</h1>
 
-    {{-- 検索フォーム --}}
+    <!-- 検索フォーム -->
     <form method="GET" action="{{ route('students.index') }}">
+        <!-- 学年で検索 -->
         <label>学年で検索：</label>
         <select name="grade">
             <option value="">すべて</option>
             @for ($i = 1; $i <= 6; $i++)
-                <option value="{{ $i }}" {{ request('grade') == $i ? 'selected' : '' }}>{{ $i }}年</option>
+                <option value="{{ $i }}" {{ request('grade') == $i ? 'selected' : '' }}>
+                    {{ $i }}年
+                </option>
             @endfor
         </select>
 
+        <!-- 名前で検索 -->
         <label>名前で検索：</label>
         <input 
             type="text" 
@@ -24,13 +28,17 @@
             value="{{ request('name') }}" 
             placeholder="例：田中"
         />
-        
+
         <button type="submit">検索</button>
     </form>
 
+    <!-- ソートボタン -->
+    <button id="sortAsc">学年昇順</button>
+    <button id="sortDesc">学年降順</button>
+
     <br>
 
-    {{-- 学生リスト --}}
+    <!-- 学生リスト -->
     <table border="1" cellpadding="8">
         <thead>
             <tr>
@@ -45,9 +53,8 @@
                     <td>{{ $student->grade }}</td>
                     <td>{{ $student->name }}</td>
                     <td>
-                        <form method="GET" action="{{ route('students.show', $student->id) }}">
-                            <button type="submit">表示</button>
-                        </form>
+                        <!-- 詳細表示リンク -->
+                        <a href="{{ route('students.show', $student->id) }}">表示</a>
                     </td>
                 </tr>
             @empty
@@ -59,6 +66,12 @@
     </table>
 
     <br>
+
+    <!-- メニューに戻る -->
     <a href="{{ route('menu') }}">← メニューに戻る</a>
-    </body>
+
+    <!-- jQuery & 学生一覧用スクリプト -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/student.js') }}"></script>
+</body>
 </html>

@@ -7,6 +7,7 @@
 <body>
     <h1>ログイン</h1>
 
+ <!-- バリデーションエラーがある場合、一覧表示 -->
     @if ($errors->any())
         <ul>
             @foreach ($errors->all() as $error)
@@ -15,10 +16,12 @@
         </ul>
     @endif
 
+ <!-- ログイン後などに表示する成功メッセージ -->
     @if (session('success'))
         <p>{{ session('success') }}</p>
     @endif
 
+ <!-- ログインフォーム -->
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div>
@@ -32,6 +35,7 @@
         <button type="submit">ログイン</button>
     </form>
 
+<!-- 新規登録リンク -->
     <p>
         <a href="{{ route('register') }}">新規登録</a>
     </p>
